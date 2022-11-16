@@ -1,4 +1,4 @@
-/* config/settings.ts -- deployment-specific configuration settings.
+/* config/logging.ts -- configuration for logging.
  * Copyright (C) 2022  Rishvic Pushpakaran
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,24 +14,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-import type * as argon2 from 'argon2'
-import { getEnv, getEnvMinIO } from '@utils/environ'
-import { argon2id } from 'argon2'
+import pino from 'pino'
+import { LOGLEVEL } from './settings'
 
-export const LOGLEVEL = getEnv('LOGLEVEL', 'info')
+const logger = pino({
+  name: 'jumpcoder:server',
+  level: LOGLEVEL,
+})
 
-export const MONGO_URL = getEnv('MONGO_URL')
-
-export const MAX_FILE_SIZE = 65535
-export const S3_CODE_BUCKET = 'jumpcode'
-export const MINIO_SETTINGS = getEnvMinIO('MINIO_URL')
-
-export const ARGON2_SETTINGS: argon2.Options = {
-  type: argon2id,
-  version: 0x13,
-  timeCost: 1,
-  parallelism: 4,
-  memoryCost: 2 ** 21,
-  saltLength: 16,
-  hashLength: 32,
+export const getLogger = function (opts: Record<string, any>) {
+  return logger.child(opts)
 }

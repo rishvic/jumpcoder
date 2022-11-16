@@ -19,6 +19,7 @@
       "@config/*": ["config/*"],
       "@controllers/*": ["controllers/*"],
       "@schemas/*": ["schemas/*"],
+      "@services/*": ["services/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     }

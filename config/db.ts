@@ -31,13 +31,54 @@ export type SubmissionStatus = 'SUB' | 'COMP' | 'AC' | 'WA' | 'TLE' | 'ERR'
 
 export type Submission = {
   problem: ObjectId
+  lang: string
   object: string
   etag: string
   status: SubmissionStatus
 }
 
+export type Argon2Password = {
+  type: 'argon2'
+  hash: string
+}
+
+export type Password = Argon2Password
+
+export type Profile = {
+  name: string
+  familyName?: string
+  givenName?: string
+}
+
+export type User = {
+  username: string
+  password: Password
+  profile: Profile
+}
+
+export type Role = 'primary' | 'secondary'
+
+export type Membership = {
+  userId: ObjectId
+  accountId: ObjectId
+  role: Role
+  email: string
+}
+
+export type PlanLevel = 'personal'
+
+export type Account = {
+  name: string
+  planLevel: PlanLevel
+}
+
 export const problemsDb = client.db('problems')
 export const problems = problemsDb.collection<Problem>('problems')
 export const submissions = problemsDb.collection<Submission>('submissions')
+
+export const usersDb = client.db('users')
+export const users = usersDb.collection<User>('users')
+export const memberships = usersDb.collection<Membership>('memberships')
+export const accounts = usersDb.collection<Account>('accounts')
 
 export default client

@@ -23,9 +23,22 @@ export const config: PageConfig = {
   },
 }
 
+// Max Content-Length: 1MiB
+const MAX_LEN: number = 2 ** 20
+
 const handler: NextApiHandler = async function handler(req, res) {
   switch (req.method) {
     case 'POST':
+      if (req.headers['content-length']) {
+        const length = Number.parseInt(req.headers['content-length'], 10)
+        if (!Number.isNaN(length) && length > MAX_LEN) {
+          res
+            .status(413)
+            .setHeader('Content-Type', 'text/plain')
+            .send('Payload Too Large')
+          return
+        }
+      }
       await submitProblem(req, res)
       return
 
