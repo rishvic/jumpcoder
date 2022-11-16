@@ -1,7 +1,7 @@
 # JumpCoder
 
-![GitHub](https://img.shields.io/github/license/rishvic/jumpcoder)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![GitHub](https://img.shields.io/github/license/rishvic/jumpcoder)](COPYING)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 Web server written with [Next.js](https://nextjs.org/), for the JumpCoder
 competitive programming platform.
