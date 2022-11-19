@@ -14,44 +14,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-import { useMemo } from 'react'
 import type { AppProps } from 'next/app'
-import CssBaseline from '@mui/material/CssBaseline'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { Roboto } from '@next/font/google'
-
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-})
+import '@styles/globals.scss'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-
-  const theme = useMemo(
-    () =>
-      createTheme({
-        typography: {
-          fontFamily: [
-            '"Roboto"',
-            roboto.style.fontFamily,
-            '"Helvetica"',
-            '"Arial"',
-            'sans-serif',
-          ].join(','),
-        },
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode]
-  )
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
-  )
+  return <Component {...pageProps} />
 }

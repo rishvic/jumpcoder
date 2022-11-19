@@ -15,8 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 import Head from 'next/head'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
+import Container from 'react-bootstrap/Container'
 import styles from '@styles/Home.module.css'
 
 export default function Home() {
@@ -27,10 +26,8 @@ export default function Home() {
         <meta name="description" content="A competitive programming platform" />
       </Head>
 
-      <Container component="main" className={styles.main}>
-        <Typography variant="h2" component="h1" className={styles.title}>
-          Welcome to JumpCoder!
-        </Typography>
+      <Container as="main" className={styles.main}>
+        <h1 className="display-2">Welcome to JumpCoder!</h1>
       </Container>
     </>
   )
